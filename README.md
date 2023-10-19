@@ -4,9 +4,9 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import matplotlib.pyplat as plt
-from mxnet import image
+from """file name""" import image
 from d2l import mxnet as d2l
-image=imread(image."jpg")
+image=imread("image.jpg")
 def bounding_box_corner_to center(boxes):
   x1,y1,x2,y2= boxes[:,0],boxes[:,1],boxes[:,2],boxes[:,3]
   cx=(x1+x2)/2
