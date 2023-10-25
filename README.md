@@ -1,33 +1,21 @@
-# bounding-boxes
 import cv2
-import numpy as np
-import pandas as pd
-import tensorflow as tf
-import matplotlib.pyplat as plt
-from d2l import mxnet as d2l
-image=imread("telugu.jpg")
-def bounding_box_corner_to_center(boxes):
-    x1,y1,x2,y2= boxes[:,0],boxes[:,1],boxes[:,2],boxes[:,3]
-    cx=(x1+x2)/2
-    cy=(y1+y2)/2
-    wid=x2-x1
-    heig=y2-y1
-    boxes=np.stack((cx,cy,wid,heig),axis=1)
-    return boxes
-def bounding_box_center_to_corner(boxes):
-    cx,cy,wid,heig=boxes[:,0],boxes[:,1],boxes[:,2],boxes[:,3]
-    x1=cx-0.5 * wid
-    y1=cy-0.5 * heig
-    x2=cx+0.5 * wid
-    y2=cy+0.5 * heig
-    boxes=np.stack((x1,y1,x2,y2),axis=1)
-    return boxes
-image_bounding_box=  []      # Enter the coordinates as a list of elements
+img = cv2.imread(r'C:\Users\DINESH\Desktop\teluguu.jpg')
+# coordinates of bounding boxes
+# specify top-left and bottom-right corners (x1, y1, x2, y2) [(x1, y1, x2, y2), (x1, y1, x2, y2), ...]
+"""x1=int(input())
+y1=int(input())
+x2=int(input())
+y2=int(input())"""
+bounding_boxes = [(0,0,479,319)]  # Add your bounding box coordinates
 
-# to check whether the image is accurate or not by converting image to matplotlib.pyplot format
-def box_to_rect(bbox,center):
-    return(d2l.plt.Rectangle(xy=(bbox[0], bbox[1]), width=bbox[2]-bbox[0], height=bbox[3]-bbox[1],fill=False, edgecolor=color, linewidth=2)
+color = ( 0,225,0)                            # The color for the bounding boxes
+thickness = 10                               # thickness of the bounding box lines
+for (x1, y1, x2, y2) in bounding_boxes:
+    cv2.rectangle(img, (x1, y1), (x2, y2), color, thickness)        # Draw the bounding boxes on the image
 
+# Save the image with bounding boxes
+cv2.imwrite('teluguu.jpg', img)
 
-figure=plt.imshow(image)
-figure.axis.add_patch(bbox_to_rect(telugu,'green')
+cv2.imshow('Image with Bounding Boxes', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
